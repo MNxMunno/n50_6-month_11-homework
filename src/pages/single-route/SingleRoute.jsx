@@ -26,7 +26,9 @@ const SingleRoute = () => {
         <p>{product?.description}</p>
         <b>{product?.price} $</b>
         </div>
+        <div className="cardd">
         <img src={product?.images[0]} alt="img" />
+        </div>
         </div>
       </div>
     </section>
