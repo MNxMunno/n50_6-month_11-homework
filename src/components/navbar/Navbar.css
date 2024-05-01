@@ -77,9 +77,21 @@ input {
   font-size: 16px;
   font-family: sans-serif;
 }
+.logo{
+  width: 300px;
+}
 
 .search_box img {
   width: 50px;
   height: 50px;
   object-fit: contain;
+}
+
+@media only screen and (max-width: 777px) {
+  .nav__items{
+    gap: 10px;
+  }
+  .logo{
+    display: none;
+  }
 }
