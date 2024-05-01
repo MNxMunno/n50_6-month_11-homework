@@ -1,0 +1,56 @@
+.home{
+    padding-top: 80px;
+ select{
+   outline: none;
+   font-size: 16px;
+   font-family: sans-serif;
+   cursor: pointer;
+   padding: 10px 5px;
+   
+ }    
+ .btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .btn-blue{
+        width: 100px;
+        margin: auto;
+     }
+ }
+}
+
+
+.single{
+    padding-top: 80px;
+    .content{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        flex-wrap: wrap;
+        .cardd{
+            h2{
+                font-family: sans-serif;
+                font-size: 32px;
+                color: #121756;
+            }
+            p{
+                padding: 20px 0;
+                max-width: 300px;
+                font-family: sans-serif;
+                font-size: 16px;
+                color: #121756;
+            }
+            b{
+                font-size: 28px;
+                font-family: sans-serif;
+                color: red;
+            }
+            max-width: 500px;
+            img{
+            
+                width: 100%;
+            }
+        }
+    }
+}

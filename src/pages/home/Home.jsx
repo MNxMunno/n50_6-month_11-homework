@@ -1,41 +1,49 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../api";
 import Products from "../../components/products/Products";
+import { useFetch } from "../../hooks/useFetch";
 
 function Home() {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [category, setCategory] = useState("all");
   const [count, setCount] = useState(1);
   const [search, setSearch] = useState("");
+  const { data: categories } = useFetch("/products/categories");
 
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get(`/products?limit=${count * 5}`)
-      .then((res) => setData(res.data.products))
-      .catch((res) => console.log(res))
-      .finally(() => setLoading(false));
-  }, [count]);
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get(`/products/search?q=${search}`)
-      .then((res) => setData(res.data.products))
-      .catch((res) => console.log(res))
-      .finally(() => setLoading(false));
-  }, [search]);
+  let url = `/products${
+    category === "all" ? "" : `/category/${category}`
+  }?limit=${count * 10}`;
+  const { data, loading } = useFetch(url, count, category);
+
+  let options = categories?.data?.map((el, inx) => (
+    <option key={inx} value={el}>
+      {el}
+    </option>
+  ));
+
+  // useEffect(() => {
+  //   // setLoading(true);
+  //   axios
+  //     .get(`/products/search?q=${search}`)
+  //     .then((res) => setData(res.data.products))
+  //     .catch((res) => console.log(res))
+  //     .finally(() => setLoading(false));
+  // }, [search]);
 
   return (
-    <div className="home">
-      <input
-        style={{ padding: "5px", outline: "none", margin: "auto" }}
-        type="search"
-        name="search"
-        id="search"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <Products loading={loading} data={data} />
+    <section className="home">
+      
+      <select
+      className="container"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        name=""
+        id=""
+      >
+        <option value="all">All</option>
+        {options}
+      </select>
+      <Products loading={loading} data={data?.data?.products} />
+      <div className="btn">
       <button
         style={{ marginBottom: "200px" }}
         onClick={() => setCount((p) => p + 1)}
@@ -43,7 +51,9 @@ function Home() {
       >
         See More
       </button>
-    </div>
+      </div>
+    
+    </section>
   );
 }
 

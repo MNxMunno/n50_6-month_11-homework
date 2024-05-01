@@ -8,7 +8,7 @@ const Products = ({data, loading}) => {
     <Link to={`/product/${el.id}`}>
       <img src={el.images[0]} width={300} alt="" />
     </Link>
-    <h2>{el.title}</h2>
+    <h2 style={{padding: '13px 0'}}>{el.title}</h2>
     <button>Learn more</button>
   </div>)
   return (
