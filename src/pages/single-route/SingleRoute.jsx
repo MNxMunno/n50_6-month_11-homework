@@ -11,7 +11,7 @@ const SingleRoute = () => {
       .get(`/products/${id}`)
       .then((res) => setProduct(res.data))
       .catch((res) => console.log(res));
-  }, []);
+  }, [id]);
 
   if (!product) {
     return <h2 className="container">Loading...</h2>;
